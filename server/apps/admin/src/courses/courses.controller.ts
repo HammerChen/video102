@@ -19,6 +19,7 @@ export class CoursesController {
   option() {
     return {
       title: '课程管理',
+      searchMenuSpan: 8,
       column: [
         {
           prop: 'name',
