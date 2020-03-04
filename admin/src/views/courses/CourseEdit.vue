@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ isNew ? '新建' : '编辑' }}课程</h3>
+    <h3>{{ isNew ? '创建' : '编辑' }}课程</h3>
     <ele-form
       :form-data="data"
       :form-desc="fields"

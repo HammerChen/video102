@@ -6,7 +6,7 @@
         type="success"
         size="small"
         @click="$router.push('/courses/create')"
-        >新建课程</el-button
+        >创建课程</el-button
       >
     </div>
     <el-table :data="data.data" border stripe>
@@ -26,7 +26,7 @@
             @click="$router.push(`/courses/edit/${row._id}`)"
             >编辑</el-button
           >
-          <el-button type="danger" size="small" @click="remove(row)"
+          <el-button type="danger" size="small" @click="remove()"
             >删除</el-button
           >
         </template>
