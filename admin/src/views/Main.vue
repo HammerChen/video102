@@ -9,7 +9,7 @@
       >
         <el-submenu
           v-for="(item, index) in menu.items"
-          :index="index + 1"
+          :index="`menu-item-${index}`"
           :key="`menu-item-${index}`"
         >
           <template slot="title">{{ item.title }}</template>
@@ -25,10 +25,10 @@
     </el-aside>
     <el-container>
       <el-header>
-        Video102 - 后台管理界面
+        <h3>Video102 - 后台管理界面</h3>
       </el-header>
       <el-main>
-        <router-view></router-view>
+        <router-view :key="$route.path"></router-view>
       </el-main>
     </el-container>
   </el-container>
