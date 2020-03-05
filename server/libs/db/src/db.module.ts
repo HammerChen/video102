@@ -10,11 +10,16 @@ const models = TypegooseModule.forFeature([User, Course, Episode])
 @Global()
 @Module({
   imports: [
-    TypegooseModule.forRoot('mongodb://localhost:32768/video102', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false
+    TypegooseModule.forRootAsync({
+      useFactory() {
+        return {
+          uri: process.env.DB,
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useCreateIndex: true,
+          useFindAndModify: false
+        }
+      }
     }),
     models
   ],
