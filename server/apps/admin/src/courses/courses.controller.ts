@@ -27,7 +27,8 @@ export class CoursesController {
           sortable: true,
           search: true,
           regex: true,
-          row: true
+          row: true,
+          span: 24
         },
         {
           prop: 'cover',
