@@ -106,4 +106,8 @@ export default class RosourceList extends Vue {
 }
 </script>
 
-<style></style>
+<style>
+.avue-form__menu {
+  text-align: left;
+}
+</style>
