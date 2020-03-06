@@ -8,4 +8,8 @@
 export default {}
 </script>
 
-<style></style>
+<style>
+body::-webkit-scrollbar {
+  display: none;
+}
+</style>

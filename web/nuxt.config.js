@@ -63,7 +63,7 @@ export default {
       local: {
         endpoints: {
           login: { url: '/auth/login' },
-          logout: { url: '/api/auth/logout' },
+          logout: { url: '/auth/logout' },
           user: { url: '/auth/user', propertyName: false }
         }
         // tokenRequired: true,
