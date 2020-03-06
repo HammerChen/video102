@@ -31,12 +31,22 @@
             <v-list-item-title v-text="item.text" />
           </v-list-item>
         </v-list>
-        <v-list-item class="mt-4" link>
+
+        <v-list-item v-if="$store.state.auth.user" class="mt-4">
           <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
+            <v-icon color="grey darken-1">mdi-lock</v-icon>
           </v-list-item-action>
           <v-list-item-title class="grey--text text--darken-1"
-            >Browse Channels</v-list-item-title
+            >欢迎您：{{ $store.state.auth.user.username }}</v-list-item-title
+          >
+        </v-list-item>
+
+        <v-list-item v-else class="mt-4" @click="isShowLoginForm = true">
+          <v-list-item-action>
+            <v-icon color="grey darken-1">mdi-lock</v-icon>
+          </v-list-item-action>
+          <v-list-item-title class="grey--text text--darken-1"
+            >登录</v-list-item-title
           >
         </v-list-item>
         <v-list-item link>
@@ -72,6 +82,24 @@
     <v-content>
       <nuxt-child />
     </v-content>
+
+    <v-bottom-sheet v-model="isShowLoginForm" inset>
+      <v-form class="pa-4" @submit.prevent="login">
+        <v-text-field
+          v-model="loginModel.username"
+          label="用户名"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="loginModel.password"
+          label="密码"
+          type="password"
+          autocomplete="new-password"
+        ></v-text-field>
+
+        <v-btn color="success" type="submit">登录</v-btn>
+      </v-form>
+    </v-bottom-sheet>
   </v-app>
 </template>
 
@@ -82,6 +110,8 @@ export default {
     source: String
   },
   data: () => ({
+    isShowLoginForm: false,
+    loginModel: {},
     drawer: null,
     items: [
       { icon: 'home', text: '首页', link: '/' },
@@ -96,8 +126,21 @@ export default {
       { picture: 78, text: 'MKBHD' }
     ]
   }),
+
   created() {
     this.$vuetify.theme.dark = true
+  },
+  methods: {
+    async login() {
+      try {
+        await this.$auth.loginWith('local', {
+          data: this.loginModel
+        })
+      } catch (err) {
+        return
+      }
+      this.isShowLoginForm = false
+    }
   }
 }
 </script>
